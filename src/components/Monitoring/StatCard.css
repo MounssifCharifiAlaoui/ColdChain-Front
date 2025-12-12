@@ -1,0 +1,33 @@
+/* Base IconBox */
+.icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Température */
+.icon-box-danger {
+  background: #FFF4E6;
+}
+
+/* Humidité */
+.icon-box-primary {
+  background: #EFF6FF;
+}
+
+.icon-inside {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.icon-inside-danger {
+  color: #FF5B2E;
+}
+
+.icon-inside-primary {
+  color: #1E88E5;
+}
