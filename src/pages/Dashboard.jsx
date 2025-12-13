@@ -1,8 +1,8 @@
-import DashboardCard from "../components/dashboardComponents/DashboardCard";
-import ZoneCard from "../components/dashboardComponents/ZoneCard";
+import DashboardCard from "../components/dashboard/DashboardCard";
+import ZoneCard from "../components/dashboard/ZoneCard";
 import { useData } from "../context/useData";
-import Trends24h from "../components/dashboardComponents/Trends24h";
-import AveragePeriods from "../components/dashboardComponents/AveragePeriods";
+import Trends24h from "../components/dashboard/Trends24h";
+import AveragePeriods from "../components/dashboard/AveragePeriods";
 
 export default function Dashboard() {
   const { data, loading } = useData();

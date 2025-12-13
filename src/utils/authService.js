@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "http://10.40.14.18:8000/api";
+const API_URL = "http://10.40.14.18:8000/api/";
 
 export async function login(username, password) {
   try {
-    const res = await axios.post(`${API_URL}/token/`, {
+    const res = await axios.post(`${API_URL}token/`, {
       username,
       password,
     });

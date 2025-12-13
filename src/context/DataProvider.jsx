@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
 import { DataContext } from "./DataContext";
-import { fetchMonitoringData } from "../utils/api";
+import { fetchMonitoringData } from "../utils/monitoringApi";
 
 export function DataProvider({ children }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function loadData() {
-    const result = await fetchMonitoringData();
-    setData(result);
-    setLoading(false);
+    try {
+      const result = await fetchMonitoringData();
+      setData(result);
+    } catch (e) {
+      console.error("Erreur chargement monitoring", e);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

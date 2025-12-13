@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Login from "./components/Auth/Login";
 import Dashboard from "./pages/Dashboard";
 import Monitoring from "./pages/Monitoring"
-import Analysis from "./pages/Analysis"
+import AlertsArchive from "./pages/AlertsArchive"
 import Alerts from "./pages/Alerts"
 import Settings from "./pages/Settings"
 
@@ -21,10 +21,10 @@ function CustomRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute> } />
         <Route path="/monitoring" element={ <ProtectedRoute> <Monitoring /> </ProtectedRoute> } />
-        <Route path="/analysis" element={ <ProtectedRoute> <Analysis /> </ProtectedRoute> } />
         <Route path="/alerts" element={ <ProtectedRoute> <Alerts /> </ProtectedRoute> } />
         <Route path="/settings" element={ <ProtectedRoute> <Settings /> </ProtectedRoute> } />
-
+        <Route path="/alerts" element={ <ProtectedRoute> <Alerts /> </ProtectedRoute> } />
+        <Route path="/alerts/archive" element={ <ProtectedRoute> <AlertsArchive  /> </ProtectedRoute> } />
       </RouterRoutes>
     </>
   );

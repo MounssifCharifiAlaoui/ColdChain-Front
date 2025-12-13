@@ -1,0 +1,16 @@
+import api from "./api";
+
+export async function fetchOperators() {
+  const res = await api.get("/settings/operators/");
+  return res.data;
+}
+
+export async function createOperator(payload) {
+  const res = await api.post("/settings/operators/create/", payload);
+  return res.data;
+}
+
+export async function updateOperator(id, payload) {
+  const res = await api.put(`/settings/operators/${id}/`, payload);
+  return res.data;
+}

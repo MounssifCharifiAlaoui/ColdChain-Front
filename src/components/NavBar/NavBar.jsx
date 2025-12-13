@@ -45,14 +45,6 @@ export default function NavBar() {
               </Link>
             </li>
 
-            {/* Analysis */}
-            <li className="nav-item main mx-lg-3 my-2 my-lg-0">
-              <Link className="nav-link d-flex align-items-center text-secondary" href="/analysis">
-                <i className="bi bi-bar-chart me-2"></i>
-                <span className='fs-500'>Analysis</span>
-              </Link>
-            </li>
-
             {/* Alerts */}
             <li className="nav-item main mx-lg-3 my-2 my-lg-0">
               <Link className="nav-link d-flex align-items-center text-secondary" to="/alerts">
@@ -61,14 +53,13 @@ export default function NavBar() {
               </Link>
             </li>
 
-            <li>
-              <Link className="dropdown-item d-flex align-items-center text-secondary" href="/settings">
-                <i className="bi bi-gear me-2"></i> 
+            {/* Settings */}
+            <li className="nav-item main mx-lg-3 my-2 my-lg-0">
+              <Link className="nav-link d-flex align-items-center text-secondary" to="/settings">
+                <i className="bi bi-bar-chart me-2"></i>
                 <span className='fs-500'>Settings</span>
               </Link>
             </li>
-
-
 
             {/* User Dropdown (inchangé) */}
             <li className="nav-item dropdown mx-lg-3 my-2 my-lg-0">
