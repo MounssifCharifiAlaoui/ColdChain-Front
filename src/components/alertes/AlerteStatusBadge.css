@@ -1,0 +1,48 @@
+/* ===============================
+   BASE BADGE
+   =============================== */
+
+.alerte-status-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+/* ===============================
+   STATUS VARIANTS
+   =============================== */
+
+/* 🟡 Anormal */
+.status-warning {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border-color: #FDE68A;
+}
+
+/* 🔴 Critique */
+.status-danger {
+  background-color: #FEE2E2;
+  color: #991B1B;
+  border-color: #FECACA;
+}
+
+/* ⚫ Sévère */
+.status-severe {
+  background-color: #E5E7EB;
+  color: #111827;
+  border-color: #D1D5DB;
+}
+
+/* ⚪ Default */
+.status-default {
+  background-color: #F1F5F9;
+  color: #475569;
+  border-color: #CBD5E1;
+}

@@ -42,7 +42,9 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="px-4 py-5" style={{backgroundColor : '#f4f8fd'}}>
+    <div className="px-4 py-5" style={{ backgroundColor: '#F8FAFC' }}>
+      {/* // <div className="px-4 py-5" style={{ backgroundColor: "#0B1220", color: "#EAF0FF" }}> */}
+
       <div className="p-4">
 
         <h3 className="fw-bold mb-1">Dashboard – Temperature Monitoring</h3>
@@ -53,13 +55,41 @@ export default function Dashboard() {
         {/* ========== Cards ========== */}
         <div className="row g-4">
           <div className="col-md-6">
-            <DashboardCard title="Température" icon="bi bi-thermometer" color="#ff6b4a" gradientFrom="#fef3f3" gradiantMiddle="#FCFDFF"
-              gradientTo="#fef3f3" value={last.temp} avgValue={avgTemperature.toFixed(1)} unit="°C" variation={tempVariation} />
+<DashboardCard
+  title="Température"
+  icon="bi bi-thermometer"
+  color="#FF5A36"
+  gradientFrom="#FFFFFF"
+  gradiantMiddle="#FDFEFE"
+  gradientTo="#F8FAFC"
+  value={last.temp}
+  avgValue={avgTemperature.toFixed(1)}
+  unit="°C"
+  variation={tempVariation}
+/>
+
+
+
+
           </div>
 
           <div className="col-md-6">
-            <DashboardCard title="Humidité" icon="bi bi-droplet" color="#457bff" gradientFrom="#eff3ff" gradiantMiddle="#FCFDFF"
-              gradientTo="#eff3ff" value={last.hum} avgValue={avgHumidity.toFixed(1)} unit="%" variation={humVariation} />
+<DashboardCard
+  title="Humidité"
+  icon="bi bi-droplet"
+  color="#1E90FF"
+  gradientFrom="#FFFFFF"
+  gradiantMiddle="#FDFEFE"
+  gradientTo="#F1F7FF"
+  value={last.hum}
+  avgValue={avgHumidity.toFixed(1)}
+  unit="%"
+  variation={humVariation}
+/>
+
+
+
+
           </div>
         </div>
       </div>
@@ -67,7 +97,7 @@ export default function Dashboard() {
       {/* ========== Zone Monitoring ========== */}
       <div className="p-4">
 
-        <h4 className="fw-semibold text-secondary mb-3">
+        <h4 className="fw-semibold mb-3">
           <i className="bi bi-geo-alt me-2"></i> <span className="">Surveillance par zone</span>
         </h4>
 
@@ -95,17 +125,17 @@ export default function Dashboard() {
 
       <div className="p-4">
 
-      <div className="row g-4">
-        <div className="col-md-6">
-          <Trends24h data={data} />
+        <div className="row g-4">
+          <div className="col-md-6">
+            <Trends24h data={data} />
+          </div>
+
+          <div className="col-md-6">
+            <AveragePeriods periods={periods} />
+          </div>
         </div>
 
-        <div className="col-md-6">
-          <AveragePeriods periods={periods} />
-        </div>
       </div>
-
-    </div>
     </div>
   );
 }

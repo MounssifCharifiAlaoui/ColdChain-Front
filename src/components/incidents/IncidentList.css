@@ -1,0 +1,90 @@
+/* ===============================
+   CARD BASE
+   =============================== */
+
+.incident-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.incident-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+}
+
+/* ===============================
+   STATUS VARIANTS
+   =============================== */
+
+.incident-open {
+  border-left: 6px solid #F59E0B; /* warning */
+}
+
+.incident-closed {
+  border-left: 6px solid #22C55E; /* success */
+  background-color: #F8FAFC;
+}
+
+/* ===============================
+   HEADER
+   =============================== */
+
+.incident-icon {
+  color: #F59E0B;
+  font-size: 1rem;
+}
+
+.incident-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.incident-badge {
+  background-color: #FEE2E2;
+  color: #991B1B;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+}
+
+/* ===============================
+   SUBTITLE
+   =============================== */
+
+.incident-subtitle {
+  font-size: 0.8rem;
+  color: #64748B;
+}
+
+/* ===============================
+   META INFO
+   =============================== */
+
+.incident-meta span {
+  display: block;
+  font-size: 0.7rem;
+  color: #64748B;
+}
+
+.incident-meta strong {
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+/* ===============================
+   ACTIONS
+   =============================== */
+
+.incident-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.incident-actions .btn {
+  min-width: 100px;
+}

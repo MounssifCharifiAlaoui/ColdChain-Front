@@ -1,0 +1,72 @@
+/* ===============================
+   CARD
+   =============================== */
+
+.monitoring-filter-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+/* ===============================
+   TITLE
+   =============================== */
+
+.filter-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748B;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ===============================
+   FILTER BUTTONS
+   =============================== */
+
+.filter-pill {
+  background-color: #F8FAFC;
+  border: 1px solid #E5E7EB;
+  color: #475569;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  background-color: #F1F5F9;
+}
+
+.filter-pill.active {
+  background-color: #2563EB;
+  border-color: #2563EB;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+/* ===============================
+   CUSTOM FILTER BOX
+   =============================== */
+
+.custom-filter-box {
+  background-color: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+/* ===============================
+   INPUTS
+   =============================== */
+
+.filter-input {
+  font-size: 0.85rem;
+  border: 1px solid #CBD5E1;
+}
+
+.filter-input:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}

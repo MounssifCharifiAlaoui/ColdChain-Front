@@ -1,15 +1,16 @@
 // src/components/alertes/AlerteStatusBadge.jsx
 import React from "react";
+import "./AlerteStatusBadge.css";
 
 export default function AlerteStatusBadge({ status }) {
-  const colors = {
-    anormal: "warning",
-    critique: "danger",
-    severe: "dark",
+  const statusClass = {
+    anormal: "status-warning",
+    critique: "status-danger",
+    severe: "status-severe",
   };
 
   return (
-    <span className={`badge bg-${colors[status] || "secondary"}`}>
+    <span className={`alerte-status-badge ${statusClass[status] || "status-default"}`}>
       {status.toUpperCase()}
     </span>
   );

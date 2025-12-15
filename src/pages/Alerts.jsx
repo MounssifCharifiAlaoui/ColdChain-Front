@@ -1,9 +1,12 @@
+import { useState } from "react";
 import IncidentStatsCards from "../components/incidents/IncidentStatsCards";
 import IncidentList from "../components/incidents/IncidentList";
 import ArchiveLink from "../components/incidents/ArchiveLink";
+import AckModal from "../components/alertes/AckModal";
 
 export default function Alerts() {
-  // 🔧 MOCK DATA (API plus tard)
+
+  // 🔧 MOCK DATA
   const stats = {
     active: 1,
     ack: 1,
@@ -21,8 +24,24 @@ export default function Alerts() {
     },
   ];
 
+  // 🔑 ACK MODAL STATE
+  const [selectedIncident, setSelectedIncident] = useState(null);
+  const [comment, setComment] = useState("");
+  const [ackLoading, setAckLoading] = useState(false);
+
   const handleAck = (id) => {
-    console.log("ACK incident", id);
+    setSelectedIncident(id);
+  };
+
+  const handleConfirmAck = async () => {
+    try {
+      setAckLoading(true);
+      console.log("ACK confirmé pour incident", selectedIncident, comment);
+      setSelectedIncident(null);
+    } finally {
+      setAckLoading(false);
+      setComment("");
+    }
   };
 
   const handleResolve = (id) => {
@@ -32,24 +51,37 @@ export default function Alerts() {
   return (
     <div className="container py-4">
 
-      {/* Header */}
-      <h3 className="fw-bold mb-1">Alertes</h3>
-      <p className="text-muted mb-4">
-        Gestion des alertes et notifications
-      </p>
+      {/* HEADER */}
+      <div className="mb-4">
+        <h3 className="fw-bold mb-1">Alertes</h3>
+        <p className="text-muted mb-0">
+          Gestion des alertes et notifications
+        </p>
+      </div>
 
-      {/* Stats */}
+      {/* STATS */}
       <IncidentStatsCards stats={stats} />
 
-      {/* List */}
+      {/* LIST */}
       <IncidentList
         incidents={incidents}
         onAck={handleAck}
         onResolve={handleResolve}
       />
 
-      {/* Archive */}
+      {/* ARCHIVE LINK */}
       <ArchiveLink />
+
+      {/* ACK MODAL */}
+      <AckModal
+        show={Boolean(selectedIncident)}
+        incidentId={selectedIncident}
+        comment={comment}
+        setComment={setComment}
+        loading={ackLoading}
+        onClose={() => setSelectedIncident(null)}
+        onConfirm={handleConfirmAck}
+      />
 
     </div>
   );

@@ -1,0 +1,44 @@
+.navbar .nav-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #475569 !important; /* gris bleuté moderne */
+  letter-spacing: 0.3px;
+  padding: 0.5rem 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #2563EB !important; /* bleu dashboard */
+}
+
+.navbar .nav-link.active {
+  color: #2563EB !important;
+  font-weight: 600;
+}
+
+
+.navbar .dropdown-toggle span.text-secondary {
+  font-size: 0.75rem;
+}
+
+.navbar {
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+/* --- Centrage parfait du menu --- */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Evite les bugs sur mobile */
+@media (max-width: 991px) {
+  .nav-center {
+    position: static;
+    transform: none;
+  }
+}
+

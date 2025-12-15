@@ -1,0 +1,59 @@
+/* ===============================
+   BACKDROP
+   =============================== */
+
+.ack-backdrop {
+  background-color: rgba(15, 23, 42, 0.45);
+}
+
+/* ===============================
+   MODAL
+   =============================== */
+
+.ack-modal {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+}
+
+/* ===============================
+   HEADER ICON
+   =============================== */
+
+.ack-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: #DCFCE7; /* vert clair rassurant */
+  color: #16A34A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ===============================
+   TEXTAREA
+   =============================== */
+
+.ack-textarea {
+  border-radius: 12px;
+  border: 1px solid #CBD5E1;
+  font-size: 0.9rem;
+}
+
+.ack-textarea:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===============================
+   BUTTONS
+   =============================== */
+
+.modal-footer .btn-primary {
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.modal-footer .btn-primary:disabled {
+  box-shadow: none;
+}
