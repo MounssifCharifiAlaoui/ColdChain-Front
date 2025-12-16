@@ -15,15 +15,12 @@ export default function DashboardCard({
   variation
 }) {
   return (
-<div
-  className="card rounded-4 p-3"
-  style={{
-    background: `linear-gradient(135deg, ${gradientFrom}, ${gradiantMiddle}, ${gradientTo})`,
-    boxShadow: "0 12px 30px rgba(15, 23, 42, 0.08)",
-    border: "1px solid #E5E7EB"
-  }}
->
-
+    <div
+      className="card shadow-sm border-0 rounded-4 p-3"
+      style={{background: `linear-gradient(135deg, ${gradientFrom}, ${gradiantMiddle}, ${gradientTo})`,
+              backdropFilter: "blur(6px)"
+      }}
+    >
       {/* HEADER */}
       <div className="d-flex justify-content-between align-items-start mb-3">
         <div className="d-flex align-items-center gap-3">

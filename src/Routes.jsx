@@ -7,8 +7,7 @@ import Monitoring from "./pages/Monitoring"
 import AlertsArchive from "./pages/AlertsArchive"
 import Alerts from "./pages/Alerts"
 import Settings from "./pages/Settings"
-import Footer from "./components/footer/Footer";
-
+import Profile from "./pages/Profile";
 
 function CustomRoutes() {
   const location = useLocation();
@@ -26,9 +25,9 @@ function CustomRoutes() {
         <Route path="/settings" element={ <ProtectedRoute> <Settings /> </ProtectedRoute> } />
         <Route path="/alerts" element={ <ProtectedRoute> <Alerts /> </ProtectedRoute> } />
         <Route path="/alerts/archive" element={ <ProtectedRoute> <AlertsArchive  /> </ProtectedRoute> } />
+        <Route path="/profile" element={ <ProtectedRoute> <Profile /> </ProtectedRoute> } />
+        
       </RouterRoutes>
-
-      {!hideNavbar && <Footer />}
     </>
   );
 }

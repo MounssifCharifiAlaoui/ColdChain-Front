@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://10.40.14.18:8000/api/";
+const API_URL = "http://192.168.1.121:8000/api/";
 
 export async function login(username, password) {
   try {
@@ -44,22 +44,8 @@ export function getRefreshToken() {
   return localStorage.getItem("refresh");
 }
 
-// export function isLogged() {
-//   const token = localStorage.getItem("access");
-//   return token !== null; // simple check
-// }
-
 export function isLogged() {
   const token = localStorage.getItem("access");
-  if (!token) return false;
-
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    const now = Math.floor(Date.now() / 1000);
-    return payload.exp > now;
-  } catch {
-    return false;
-  }
+  return token !== null; // simple check
 }
-
 

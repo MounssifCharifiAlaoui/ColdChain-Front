@@ -1,4 +1,3 @@
-import './IncidentList.css'
 export default function IncidentList({ incidents, onAck, onResolve }) {
   return (
     <div className="d-flex flex-column gap-3">
@@ -6,80 +5,67 @@ export default function IncidentList({ incidents, onAck, onResolve }) {
       {incidents.map((incident) => (
         <div
           key={incident.id}
-          className={`card incident-card p-4 rounded-4 ${
+          className={`card shadow-sm border-0 p-4 ${
             incident.status === "open"
-              ? "incident-open"
-              : "incident-closed"
+              ? "bg-warning bg-opacity-10"
+              : "bg-light"
           }`}
         >
           <div className="d-flex justify-content-between align-items-start">
 
             {/* LEFT */}
-            <div className="incident-content">
-
-              {/* HEADER */}
+            <div>
               <div className="d-flex align-items-center gap-2 mb-1">
-                <i className="bi bi-exclamation-triangle-fill incident-icon"></i>
-
-                <span className="incident-title">
+                <i className="bi bi-exclamation-triangle-fill text-warning"></i>
+                <span className="fw-bold">
                   Température {incident.severity}
                 </span>
 
                 {incident.status === "open" && (
-                  <span className="incident-badge">
-                    Active
-                  </span>
+                  <span className="badge bg-danger">Active</span>
                 )}
               </div>
 
-              <div className="incident-subtitle mb-2">
+              <div className="text-muted mb-2">
                 Température hors seuil détectée
               </div>
 
-              {/* DETAILS */}
-              <div className="row incident-meta">
+              <div className="row text-muted small">
                 <div className="col-md-3">
-                  <span>Valeur</span>
-                  <strong>{incident.peak_temp}°C</strong>
+                  <strong>Valeur :</strong> {incident.peak_temp}°C
                 </div>
-
                 <div className="col-md-3">
-                  <span>Seuil</span>
-                  <strong>{incident.threshold ?? "--"}°C</strong>
+                  <strong>Seuil :</strong> {incident.threshold ?? "--"}°C
                 </div>
-
                 <div className="col-md-3">
-                  <span>Escalades</span>
-                  <strong>{incident.escalation_count}</strong>
+                  <strong>Escalade :</strong> {incident.escalation_count}
                 </div>
-
                 <div className="col-md-3">
-                  <span>Horodatage</span>
-                  <strong>
-                    {new Date(incident.created_at).toLocaleString()}
-                  </strong>
+                  <strong>Horodatage :</strong>{" "}
+                  {new Date(incident.created_at).toLocaleString()}
                 </div>
               </div>
             </div>
 
             {/* RIGHT */}
-            {incident.status === "open" && (
-              <div className="incident-actions">
-                <button
-                  className="btn btn-outline-primary btn-sm"
-                  onClick={() => onAck(incident.id)}
-                >
-                  Acquitter
-                </button>
-
-                <button
-                  className="btn btn-outline-success btn-sm"
-                  onClick={() => onResolve(incident.id)}
-                >
-                  Résoudre
-                </button>
-              </div>
-            )}
+            <div className="d-flex flex-column gap-2">
+              {incident.status === "open" && (
+                <>
+                  <button
+                    className="btn btn-outline-primary btn-sm"
+                    onClick={() => onAck(incident.id)}
+                  >
+                    Acquitter
+                  </button>
+                  <button
+                    className="btn btn-outline-success btn-sm"
+                    onClick={() => onResolve(incident.id)}
+                  >
+                    Résoudre
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       ))}

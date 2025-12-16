@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import MonitoringFilters from "../components/monitoring/MonitoringFilters";
-import StatCard from "../components/monitoring/StatCard";
-import ChartTempHum from "../components/monitoring/ChartTempHum";
+import MonitoringFilters from "../components/Monitoring/MonitoringFilters";
+import StatCard from "../components/Monitoring/StatCard";
+import ChartTempHum from "../components/Monitoring/ChartTempHum";
 import { timeSince, formatHour } from "../utils/date";
 import { useData } from "../context/useData";
 

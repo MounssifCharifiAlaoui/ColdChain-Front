@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAccessToken, getRefreshToken, logout } from "./authService";
 
 const api = axios.create({
-    baseURL: "http://10.223.133.18:8000/api",
+    baseURL: "http://192.168.1.121:8000/api",
 });
 
 api.interceptors.request.use(
@@ -34,7 +34,7 @@ api.interceptors.response.use(
             }
 
             try {
-                const res = await axios.post("http://10.40.14.18:8000/api/token/refresh/", {
+                const res = await axios.post("http://192.168.1.121:8000/api/token/refresh/", {
                     refresh,
                 });
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import "./AckModal.css";
 
 export default function AckModal({
   show,
@@ -12,6 +11,7 @@ export default function AckModal({
 }) {
   const textareaRef = useRef(null);
 
+  // Focus automatique quand le modal s'ouvre
   useEffect(() => {
     if (show) {
       setTimeout(() => textareaRef.current?.focus(), 50);
@@ -24,24 +24,19 @@ export default function AckModal({
     <>
       {/* Backdrop */}
       <div
-        className="modal-backdrop fade show ack-backdrop"
+        className="modal-backdrop fade show"
         onClick={loading ? undefined : onClose}
       />
 
       {/* Modal */}
       <div className="modal fade show d-block" tabIndex="-1" role="dialog">
         <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content ack-modal shadow-lg rounded-4">
+          <div className="modal-content shadow">
 
-            {/* HEADER */}
-            <div className="modal-header border-0 pb-0">
-              <div className="d-flex align-items-center gap-2">
-                <span className="ack-icon">✔</span>
-                <h5 className="modal-title fw-semibold">
-                  Accuser réception — Incident #{incidentId}
-                </h5>
-              </div>
-
+            <div className="modal-header">
+              <h5 className="modal-title">
+                ✔ Accuser réception — Incident #{incidentId}
+              </h5>
               <button
                 type="button"
                 className="btn-close"
@@ -50,32 +45,26 @@ export default function AckModal({
               />
             </div>
 
-            {/* BODY */}
-            <div className="modal-body pt-2">
-              <p className="text-muted mb-3">
-                Confirme que tu as bien reçu l’alerte.  
-                Tu peux ajouter un commentaire si nécessaire.
+            <div className="modal-body">
+              <p className="text-muted mb-2">
+                Confirme que tu as bien reçu l’alerte. Ajoute un commentaire si besoin.
               </p>
 
-              <label className="form-label fw-semibold">
-                Commentaire <span className="text-muted">(optionnel)</span>
-              </label>
-
+              <label className="form-label">Commentaire (optionnel)</label>
               <textarea
                 ref={textareaRef}
-                className="form-control ack-textarea"
+                className="form-control"
                 rows={4}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="Ex : Je prends en charge, je vais vérifier la chambre froide."
+                placeholder="Ex: Je prends en charge, je vais vérifier la chambre froide."
                 disabled={loading}
               />
             </div>
 
-            {/* FOOTER */}
-            <div className="modal-footer border-0 pt-0">
+            <div className="modal-footer">
               <button
-                className="btn btn-outline-secondary px-4"
+                className="btn btn-outline-secondary"
                 onClick={onClose}
                 disabled={loading}
                 type="button"
@@ -84,12 +73,12 @@ export default function AckModal({
               </button>
 
               <button
-                className="btn btn-primary px-4 fw-semibold"
+                className="btn btn-primary"
                 onClick={onConfirm}
                 disabled={loading}
                 type="button"
               >
-                {loading ? "Envoi en cours..." : "Confirmer (ACK)"}
+                {loading ? "Envoi..." : "Confirmer (ACK)"}
               </button>
             </div>
 

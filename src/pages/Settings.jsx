@@ -2,6 +2,7 @@
 import OperatorsList from "../components/settings/OperatorsList";
 import OperatorForm from "../components/settings/OperatorForm";
 import EscalationRules from "../components/settings/EscalationRules";
+import TemperatureRulesCard from "../components/settings/TemperatureRulesCard";
 
 export default function Settings() {
   // const [showForm, setShowForm] = useState(false);
@@ -13,6 +14,7 @@ export default function Settings() {
         <OperatorsList/>
         <EscalationRules/>
         <OperatorForm/>
+        <TemperatureRulesCard />
 
       {/* <OperatorsList onAdd={() => setShowForm(true)} /> */}
       {/* {showForm && (

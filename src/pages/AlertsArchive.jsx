@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./AlertsArchive.css";
 
 export default function AlertsArchive() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // ⚠️ TEMPORAIRE : données mock
+  // Tu remplaceras par un fetch API plus tard
   useEffect(() => {
     setTimeout(() => {
       setAlerts([
@@ -32,17 +33,17 @@ export default function AlertsArchive() {
 
   if (loading) {
     return (
-      <div className="p-5 text-center text-muted">
+      <div className="p-5 text-center text-secondary">
         Chargement des archives...
       </div>
     );
   }
 
   return (
-    <div className="alerts-archive px-4 py-5">
+    <div className="px-4 py-5" style={{ backgroundColor: "#f4f8fd" }}>
 
-      {/* HEADER */}
-      <div className="archive-header mb-4">
+      {/* Header */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h3 className="fw-bold mb-1">Archive des alertes</h3>
           <p className="text-muted mb-0">
@@ -50,49 +51,53 @@ export default function AlertsArchive() {
           </p>
         </div>
 
-        <Link to="/alerts" className="btn btn-outline-primary btn-sm px-3">
+        <Link to="/alerts" className="btn btn-outline-primary">
           ← Retour aux alertes
         </Link>
       </div>
 
-      {/* CONTENT */}
+      {/* Liste des alertes */}
       {alerts.length === 0 ? (
-        <div className="archive-empty">
+        <div className="text-center text-muted p-5">
           Aucune alerte archivée
         </div>
       ) : (
         <div className="d-flex flex-column gap-3">
           {alerts.map((alert) => (
-            <div key={alert.id} className="card archive-card p-4 rounded-4">
-              <div className="d-flex justify-content-between align-items-start">
+            <div
+              key={alert.id}
+              className="card shadow-sm border-0"
+              style={{ backgroundColor: "#ecfdf5" }}
+            >
+              <div className="card-body">
 
-                <div>
-                  <h6 className="archive-title">
-                    {alert.title}
-                  </h6>
-                  <p className="archive-description">
-                    {alert.description}
-                  </p>
+                <div className="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h6 className="fw-semibold mb-1">
+                      {alert.title}
+                    </h6>
+                    <p className="text-muted mb-2">
+                      {alert.description}
+                    </p>
+                  </div>
+
+                  <span className="badge bg-success">
+                    Résolue
+                  </span>
                 </div>
 
-                <span className="archive-badge">
-                  Résolue
-                </span>
-              </div>
+                <div className="row mt-3 small text-muted">
+                  <div className="col-md-3">
+                    <strong>Valeur :</strong> {alert.value}
+                  </div>
+                  <div className="col-md-3">
+                    <strong>Seuil :</strong> {alert.threshold}
+                  </div>
+                  <div className="col-md-4">
+                    <strong>Résolue :</strong> {alert.resolved_at}
+                  </div>
+                </div>
 
-              <div className="row archive-meta mt-3">
-                <div className="col-md-3">
-                  <span>Valeur</span>
-                  <strong>{alert.value}</strong>
-                </div>
-                <div className="col-md-3">
-                  <span>Seuil</span>
-                  <strong>{alert.threshold}</strong>
-                </div>
-                <div className="col-md-4">
-                  <span>Résolue</span>
-                  <strong>{alert.resolved_at}</strong>
-                </div>
               </div>
             </div>
           ))}

@@ -14,11 +14,11 @@ export default function ZoneCard({
   }[status];
 
   return (
-    <div className="card shadow-sm border-1 rounded-4 p-4 w-100">
+    <div className="card shadow-sm border-0 rounded-4 p-4 w-100">
       
       {/* HEADER */}
       <div className="d-flex justify-content-between align-items-center mb-2">
-        <h5 className="text-secondary mb-0">{zone}</h5>
+        <h5 className="text-secondary fw-semibold mb-0">{zone}</h5>
 
         <span
           className="rounded-circle"

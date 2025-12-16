@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ackAlerte } from "../../utils/incidentApi";
 import AlerteStatusBadge from "./AlerteStatusBadge";
 import AckModal from "./AckModal";
-import "./AlerteCard.css";
 
 export default function AlerteCard({ incident, onAck }) {
   const [showAck, setShowAck] = useState(false);
@@ -24,7 +23,7 @@ export default function AlerteCard({ incident, onAck }) {
       setAckLoading(true);
       await ackAlerte(incident.id, comment);
       setShowAck(false);
-      onAck?.();
+      onAck?.(); // refresh liste
     } catch (err) {
       console.error(err);
       alert("Erreur lors de l’ACK.");
@@ -34,53 +33,28 @@ export default function AlerteCard({ incident, onAck }) {
   };
 
   return (
-    <div className="card alerte-card p-3 mb-3 rounded-4">
-
-      {/* HEADER */}
+    <div className="card shadow-sm mb-3 p-3">
       <div className="d-flex justify-content-between align-items-center">
-        <div className="d-flex flex-column">
-          <span className="alerte-id">Incident #{incident.id}</span>
-          <span className="alerte-subtitle">
-            Détection automatique
-          </span>
-        </div>
-
+        <h5 className="mb-0">Incident #{incident.id}</h5>
         <AlerteStatusBadge status={incident.incident_type} />
       </div>
 
-      {/* BODY */}
-      <div className="alerte-details mt-3">
-        <div>
-          Température initiale :
-          <span className="fw-semibold ms-1">
-            {incident.first_temp}°C
-          </span>
-        </div>
-        <div>
-          Escalades :
-          <span className="fw-semibold ms-1">
-            {incident.escalation_count}
-          </span>
-        </div>
+      <div className="mt-2 text-muted">
+        <div>Température initiale : <b>{incident.first_temp}°C</b></div>
+        <div>Escalades : <b>{incident.escalation_count}</b></div>
       </div>
 
-      {/* ACTION */}
-      <div className="mt-4 d-flex align-items-center gap-2">
+      <div className="mt-3 d-flex align-items-center gap-2">
         {!isAcked ? (
-          <button
-            className="btn btn-primary btn-sm px-4 fw-semibold"
-            onClick={openModal}
-          >
+          <button className="btn btn-sm btn-primary" onClick={openModal}>
             ✔ Accuser réception
           </button>
         ) : (
-          <span className="badge ack-badge">
-            ACK reçu
-          </span>
+          <span className="badge bg-success">ACK reçu</span>
         )}
       </div>
 
-      {/* MODAL */}
+      {/* Modal ACK */}
       <AckModal
         show={showAck}
         onClose={closeModal}
