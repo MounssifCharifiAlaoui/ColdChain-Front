@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ AJOUT
 import { fetchOperators, updateOperator } from "../../utils/operatorsApi";
 import { formatRole, roleColor } from "../../utils/roles";
 import NotificationChannels from "./NotificationChannels";
@@ -6,6 +7,7 @@ import NotificationChannels from "./NotificationChannels";
 export default function OperatorsList() {
   const [operators, setOperators] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // ✅ AJOUT
 
   const loadOperators = async () => {
     try {
@@ -57,11 +59,20 @@ export default function OperatorsList() {
 
           <tbody>
             {operators.map((op) => (
-              <tr key={op.id}>
+              <tr
+                key={op.id}
+                onDoubleClick={() =>
+                  navigate(`/settings/operators/${op.id}`)
+                } // ✅ DOUBLE-CLIC ICI
+                style={{ cursor: "pointer" }}
+                title="Double-cliquez pour voir le profil"
+              >
 
                 {/* Nom */}
                 <td>
-                  <strong>{op.first_name} {op.last_name}</strong>
+                  <strong>
+                    {op.first_name} {op.last_name}
+                  </strong>
                   <div className="text-muted small">
                     {op.user?.username}
                   </div>
@@ -106,7 +117,10 @@ export default function OperatorsList() {
                         ? "btn-outline-danger"
                         : "btn-outline-success"
                     }`}
-                    onClick={() => toggleActive(op)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // ✅ IMPORTANT (évite conflit avec double-clic)
+                      toggleActive(op);
+                    }}
                   >
                     {op.is_active ? "Désactiver" : "Activer"}
                   </button>

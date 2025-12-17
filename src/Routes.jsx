@@ -8,6 +8,8 @@ import AlertsArchive from "./pages/AlertsArchive"
 import Alerts from "./pages/Alerts"
 import Settings from "./pages/Settings"
 import Profile from "./pages/Profile";
+import OperatorProfile from "./pages/OperatorProfile";
+
 
 function CustomRoutes() {
   const location = useLocation();
@@ -26,6 +28,8 @@ function CustomRoutes() {
         <Route path="/alerts" element={ <ProtectedRoute> <Alerts /> </ProtectedRoute> } />
         <Route path="/alerts/archive" element={ <ProtectedRoute> <AlertsArchive  /> </ProtectedRoute> } />
         <Route path="/profile" element={ <ProtectedRoute> <Profile /> </ProtectedRoute> } />
+        <Route path="/settings/operators/:id" element={ <ProtectedRoute> <OperatorProfile /> </ProtectedRoute> } />
+
         
       </RouterRoutes>
     </>
