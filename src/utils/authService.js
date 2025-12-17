@@ -2,6 +2,38 @@ import axios from "axios";
 
 const API_URL = "http://192.168.1.121:8000/api/";
 
+// export async function login(username, password) {
+//   try {
+//     const res = await axios.post(`${API_URL}token/`, {
+//       username,
+//       password,
+//     });
+
+//     const { access, refresh } = res.data;
+
+//     // Décoder le payload JWT pour récupérer username / role
+//     const payload = JSON.parse(atob(access.split(".")[1]));
+
+//     // après décodage JWT
+//     localStorage.setItem("is_admin", payload.is_staff ? "true" : "false");
+
+
+//     // Stockage tokens
+//     localStorage.setItem("access", access);
+//     localStorage.setItem("refresh", refresh);
+
+//     // Stockage user info
+//     localStorage.setItem("username", payload.username);
+//     localStorage.setItem("email", payload.email);
+//     // localStorage.setItem("role", payload.role); // après
+
+//     return true;
+//   } catch (e) {
+//     console.error("Erreur Login:", e);
+//     return false;
+//   }
+// }
+
 export async function login(username, password) {
   try {
     const res = await axios.post(`${API_URL}token/`, {
@@ -11,17 +43,18 @@ export async function login(username, password) {
 
     const { access, refresh } = res.data;
 
-    // Décoder le payload JWT pour récupérer username / role
     const payload = JSON.parse(atob(access.split(".")[1]));
 
-    // Stockage tokens
+    // 🔐 Tokens
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", refresh);
 
-    // Stockage user info
+    // 👤 Infos user
     localStorage.setItem("username", payload.username);
     localStorage.setItem("email", payload.email);
-    // localStorage.setItem("role", payload.role); // après
+
+    // 🔥 ADMIN FLAG
+    localStorage.setItem("is_admin", payload.is_staff ? "true" : "false");
 
     return true;
   } catch (e) {
@@ -29,6 +62,7 @@ export async function login(username, password) {
     return false;
   }
 }
+
 
 
 export function logout() {
@@ -48,4 +82,9 @@ export function isLogged() {
   const token = localStorage.getItem("access");
   return token !== null; // simple check
 }
+
+export function isAdmin() {
+  return localStorage.getItem("is_admin") === "true";
+}
+
 
