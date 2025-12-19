@@ -1,6 +1,7 @@
 import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import "./DashboardCard.css";
 
 export default function DashboardCard({
   title,
@@ -14,80 +15,73 @@ export default function DashboardCard({
   unit,
   variation
 }) {
+  const isNegative = variation.startsWith("-");
+
   return (
     <div
-      className="card shadow-sm border-0 rounded-4 p-3"
-      style={{background: `linear-gradient(135deg, ${gradientFrom}, ${gradiantMiddle}, ${gradientTo})`,
-              backdropFilter: "blur(6px)"
+      className="dashboard-card"
+      style={{
+        background: `linear-gradient(135deg, ${gradientFrom}, ${gradiantMiddle}, ${gradientTo})`
       }}
     >
       {/* HEADER */}
-      <div className="d-flex justify-content-between align-items-start mb-3">
+      <div className="dashboard-header">
         <div className="d-flex align-items-center gap-3">
           <div
-            className="rounded-3 px-3 py-2 text-white"
+            className="icon-wrapper"
             style={{ backgroundColor: color }}
           >
-            <i className={`${icon} fs-4`}></i>
+            <i className={`${icon} fs-4 text-white`}></i>
           </div>
 
-          <div className="lh-sm">
-            <p className="fw-semibold text-secondary mb-0">{title}</p>
-            <p className="fw-bold mb-0" style={{ color }}>
-              Actuelle
-            </p>
+          <div>
+            <div className="dashboard-title">{title}</div>
+            <div className="dashboard-subtitle">Valeur actuelle</div>
           </div>
         </div>
 
         {/* Variation */}
         <span
-          className="badge px-3 py-2"
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            color: variation.startsWith("-") ? "#d9534f" : "#5cb85c",
-            fontSize: "0.9rem"
-          }}
+          className={`variation-badge ${isNegative ? "down" : "up"}`}
         >
-          <i className="bi bi-graph-up-arrow me-1"></i>
+          <i className={`bi ${isNegative ? "bi-graph-down-arrow" : "bi-graph-up-arrow"} me-1`}></i>
           {variation}
         </span>
       </div>
 
       {/* BODY */}
-      <div className="d-flex justify-content-around text-center">
-        
+      <div className="dashboard-body">
+
         {/* Current */}
-        <div>
-          <div style={{ width: 80, height: 80, margin: "0 auto" }}>
-            <CircularProgressbar
-              value={value}
-              maxValue={unit === "°C" ? 50 : 100}
-              text={`${value}${unit}`}
-              styles={buildStyles({
-                textColor: "#444",
-                pathColor: color,
-                trailColor: "#eee"
-              })}
-            />
-          </div>
-          <p className="small text-secondary mt-2">Actuelle</p>
+        <div className="progress-wrapper">
+          <CircularProgressbar
+            value={value}
+            maxValue={unit === "°C" ? 50 : 100}
+            text={`${value}${unit}`}
+            styles={buildStyles({
+              textColor: "#212529",
+              pathColor: color,
+              trailColor: "rgba(0,0,0,0.08)",
+              textSize: "16px"
+            })}
+          />
+          <span className="progress-label">Actuelle</span>
         </div>
 
         {/* Average */}
-        <div>
-          <div style={{ width: 80, height: 80, margin: "0 auto" }}>
-            <CircularProgressbar
-              value={avgValue}
-              maxValue={unit === "°C" ? 50 : 100}
-              text={`${avgValue}${unit}`}
-              styles={buildStyles({
-                textColor: "#444",
-                pathColor: "#999",
-                trailColor: "#eee"
-              })}
-            />
-          </div>
-          <p className="small text-secondary mt-2">Moyenne 24h</p>
+        <div className="progress-wrapper">
+          <CircularProgressbar
+            value={avgValue}
+            maxValue={unit === "°C" ? 50 : 100}
+            text={`${avgValue}${unit}`}
+            styles={buildStyles({
+              textColor: "#212529",
+              pathColor: "#adb5bd",
+              trailColor: "rgba(0,0,0,0.08)",
+              textSize: "16px"
+            })}
+          />
+          <span className="progress-label">Moyenne 24h</span>
         </div>
 
       </div>

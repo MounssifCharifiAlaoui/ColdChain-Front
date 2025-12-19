@@ -1,0 +1,64 @@
+/* ================= CONTAINER ================= */
+.monitoring-container {
+  background: #f4f8fd;
+  min-height: 100vh;
+  padding: 2rem 2.5rem;
+}
+
+/* ================= LOADING ================= */
+.monitoring-loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+}
+
+/* ================= HEADER ================= */
+.monitoring-header {
+  margin-bottom: 2rem;
+}
+
+.monitoring-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+}
+
+.monitoring-subtitle {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* ================= SECTIONS ================= */
+.monitoring-section {
+  margin-bottom: 2.5rem;
+}
+
+/* ================= KPI ================= */
+.monitoring-kpis {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* ================= CHARTS ================= */
+.monitoring-charts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .monitoring-container {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .monitoring-kpis {
+    gap: 1.5rem;
+  }
+}

@@ -1,10 +1,17 @@
 import axios from "axios";
 import { getAccessToken, getRefreshToken, logout } from "./authService";
 
+/* 🔹 API PRINCIPALE */
 const api = axios.create({
-  baseURL: "http://192.168.1.121:8000/api", // ✅ UNE SEULE IP
+  baseURL: "http://10.40.14.18:8000/api",
 });
 
+/* 🔹 API REFRESH (sans interceptors) */
+const refreshApi = axios.create({
+  baseURL: "http://10.40.14.18:8000/api",
+});
+
+/* ===== REQUEST INTERCEPTOR ===== */
 api.interceptors.request.use(
   (config) => {
     const token = getAccessToken();
@@ -13,9 +20,10 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (err) => Promise.reject(err)
+  (error) => Promise.reject(error)
 );
 
+/* ===== RESPONSE INTERCEPTOR ===== */
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -32,18 +40,20 @@ api.interceptors.response.use(
       }
 
       try {
-        const res = await axios.post(
-          "http://192.168.1.121:8000/api/token/refresh/",
+        const res = await refreshApi.post(
+          "/token/refresh/",
           { refresh }
         );
 
         localStorage.setItem("access", res.data.access);
         originalRequest.headers.Authorization = `Bearer ${res.data.access}`;
+
         return api(originalRequest);
 
-      } catch {
+      } catch (err) {
         logout();
         window.location.href = "/login";
+        return Promise.reject(err);
       }
     }
 

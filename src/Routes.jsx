@@ -9,6 +9,7 @@ import Alerts from "./pages/Alerts"
 import Settings from "./pages/Settings"
 import Profile from "./pages/Profile";
 import OperatorProfile from "./pages/OperatorProfile";
+import TestTemperatureForm from "./pages/TestTemperatureForm";
 
 
 function CustomRoutes() {
@@ -29,6 +30,7 @@ function CustomRoutes() {
         <Route path="/alerts/archive" element={ <ProtectedRoute> <AlertsArchive  /> </ProtectedRoute> } />
         <Route path="/profile" element={ <ProtectedRoute> <Profile /> </ProtectedRoute> } />
         <Route path="/settings/operators/:id" element={ <ProtectedRoute> <OperatorProfile /> </ProtectedRoute> } />
+        <Route path="/test" element={ <ProtectedRoute> <TestTemperatureForm /> </ProtectedRoute> } />
 
         
       </RouterRoutes>

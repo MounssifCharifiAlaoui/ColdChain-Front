@@ -1,0 +1,29 @@
+/* ===== NAV LINKS STYLE ===== */
+.nav-link-custom {
+  font-size: 0.95rem;        /* Taille idéale SaaS */
+  font-weight: 500;          /* Lisible sans être lourd */
+  color: #6c757d;
+  padding: 8px 14px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* Hover */
+.nav-link-custom:hover {
+  background-color: #f1f3f5;
+  color: #0d6efd;
+}
+
+/* Active */
+.nav-link-custom.active {
+  color: #0d6efd;
+  background-color: #e7f1ff;
+  font-weight: 600;
+}
+
+/* Icons */
+.nav-link-custom i {
+  font-size: 1.05rem;
+}

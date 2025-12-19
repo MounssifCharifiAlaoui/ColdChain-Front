@@ -1,34 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchArchivedIncidents } from "../utils/incidentApi";
 
 export default function AlertsArchive() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ⚠️ TEMPORAIRE : données mock
-  // Tu remplaceras par un fetch API plus tard
   useEffect(() => {
-    setTimeout(() => {
-      setAlerts([
-        {
-          id: 1,
-          title: "Température élevée",
-          description: "Dépassement du seuil max",
-          value: "28.5°C",
-          threshold: "25°C",
-          resolved_at: "Il y a 2 jours",
-        },
-        {
-          id: 2,
-          title: "Température basse",
-          description: "Température sous le seuil min",
-          value: "1.2°C",
-          threshold: "2°C",
-          resolved_at: "Il y a 5 jours",
-        },
-      ]);
+    const loadArchive = async () => {
+      setLoading(true);
+      const data = await fetchArchivedIncidents();
+      setAlerts(data);
       setLoading(false);
-    }, 500);
+    };
+
+    loadArchive();
   }, []);
 
   if (loading) {
@@ -56,7 +42,7 @@ export default function AlertsArchive() {
         </Link>
       </div>
 
-      {/* Liste des alertes */}
+      {/* Liste */}
       {alerts.length === 0 ? (
         <div className="text-center text-muted p-5">
           Aucune alerte archivée
@@ -74,10 +60,10 @@ export default function AlertsArchive() {
                 <div className="d-flex justify-content-between align-items-start">
                   <div>
                     <h6 className="fw-semibold mb-1">
-                      {alert.title}
+                      Incident #{alert.id} — {alert.severity.toUpperCase()}
                     </h6>
                     <p className="text-muted mb-2">
-                      {alert.description}
+                      Température max atteinte : {alert.peak_temp} °C
                     </p>
                   </div>
 
@@ -87,14 +73,15 @@ export default function AlertsArchive() {
                 </div>
 
                 <div className="row mt-3 small text-muted">
-                  <div className="col-md-3">
-                    <strong>Valeur :</strong> {alert.value}
-                  </div>
-                  <div className="col-md-3">
-                    <strong>Seuil :</strong> {alert.threshold}
+                  <div className="col-md-4">
+                    <strong>Température initiale :</strong> {alert.first_temp} °C
                   </div>
                   <div className="col-md-4">
-                    <strong>Résolue :</strong> {alert.resolved_at}
+                    <strong>Température max :</strong> {alert.peak_temp} °C
+                  </div>
+                  <div className="col-md-4">
+                    <strong>Résolue le :</strong>{" "}
+                    {new Date(alert.resolved_at).toLocaleString()}
                   </div>
                 </div>
 

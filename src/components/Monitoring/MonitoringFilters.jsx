@@ -29,80 +29,84 @@ export default function MonitoringFilters({ onFilter }) {
   };
 
   return (
-    <div className="card p-3 shadow-sm rounded-3 mb-4">
+    <div className="card p-3 shadow-sm rounded-4 mb-4">
 
-      {/* Barre des filtres */}
-      <div className="d-flex gap-3 flex-wrap">
-
-        <button
-          className={`btn btn-sm ${selected === "24h" ? "btn-primary" : "btn-outline-primary"}`}
-          onClick={() => handleSelect("24h")}
-        >
-          24 heures
-        </button>
-
-        <button
-          className={`btn btn-sm ${selected === "7d" ? "btn-primary" : "btn-outline-primary"}`}
-          onClick={() => handleSelect("7d")}
-        >
-          7 jours
-        </button>
-
-        <button
-          className={`btn btn-sm ${selected === "30d" ? "btn-primary" : "btn-outline-primary"}`}
-          onClick={() => handleSelect("30d")}
-        >
-          30 jours
-        </button>
-
-        <button
-          className={`btn btn-sm ${selected === "custom" ? "btn-primary" : "btn-outline-primary"}`}
-          onClick={() => handleSelect("custom")}
-        >
-          Personnalisé
-        </button>
-
+      {/* TITRE */}
+      <div className="mb-3">
+        <h6 className="mb-0 fw-semibold text-secondary">
+          Filtres de monitoring
+        </h6>
       </div>
 
-      {/* Champs personnalisés */}
-      {selected === "custom" && (
-        <div className="mt-3">
+      {/* BOUTONS */}
+      <div className="d-flex gap-2 flex-wrap">
+        {[
+          { key: "24h", label: "24 heures" },
+          { key: "7d", label: "7 jours" },
+          { key: "30d", label: "30 jours" },
+          { key: "custom", label: "Personnalisé" },
+        ].map((f) => (
+          <button
+            key={f.key}
+            className={`btn btn-sm ${
+              selected === f.key ? "btn-primary" : "btn-outline-primary"
+            }`}
+            onClick={() => handleSelect(f.key)}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
 
-          <div className="row g-3">
-            <div className="col-md-5">
-              <label className="form-label">Date début</label>
+      {/* FILTRE PERSONNALISÉ */}
+      {selected === "custom" && (
+        <div className="mt-4">
+
+          <div className="row g-3 align-items-end">
+            <div className="col-md-4">
+              <label className="form-label small text-muted">
+                Date début
+              </label>
               <input
                 type="date"
-                className="form-control"
+                className="form-control form-control-sm"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
               />
             </div>
 
-            <div className="col-md-5">
-              <label className="form-label">Date fin</label>
+            <div className="col-md-4">
+              <label className="form-label small text-muted">
+                Date fin
+              </label>
               <input
                 type="date"
-                className="form-control"
+                className="form-control form-control-sm"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
               />
             </div>
 
-            <div className="col-md-2 d-flex align-items-end gap-2">
-              <button className="btn btn-success btn-sm w-100" onClick={applyCustomFilter}>
-                Filtrer
+            <div className="col-md-4 d-flex gap-2">
+              <button
+                className="btn btn-success btn-sm flex-fill"
+                onClick={applyCustomFilter}
+                disabled={!startDate || !endDate}
+              >
+                Appliquer
               </button>
 
-              <button className="btn btn-outline-secondary btn-sm w-100" onClick={resetCustomFilter}>
-                Réinitialiser
+              <button
+                className="btn btn-outline-secondary btn-sm flex-fill"
+                onClick={resetCustomFilter}
+              >
+                Reset
               </button>
             </div>
           </div>
 
         </div>
       )}
-
     </div>
   );
 }

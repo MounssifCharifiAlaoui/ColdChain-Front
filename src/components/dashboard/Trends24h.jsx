@@ -1,5 +1,5 @@
 // src/components/dashboardComponents/Trends24h.jsx
-import React from "react";
+import React, { useMemo } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -12,13 +12,37 @@ import {
   Filler
 } from "chart.js";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend, Filler);
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend,
+  Filler
+);
 
-export default function Trends24h({ data }) {
+export default function Trends24h({ data = [] }) {
 
-  // 🔹 On réduit les labels X : on montre 1 label toutes les 3 heures
-  const labels = data.map((d) => new Date(d.dt).getHours() + "h");
-  const reducedLabels = labels.map((l, i) => (i % 3 === 0 ? l : "")); // ← AFFICHER SEULEMENT 1/3
+  // ✅ HOOK TOUJOURS APPELÉ
+  const labels = useMemo(
+    () => data.map(d => new Date(d.dt).getHours() + "h"),
+    [data]
+  );
+
+  const reducedLabels = useMemo(
+    () => labels.map((l, i) => (i % 3 === 0 ? l : "")),
+    [labels]
+  );
+
+  // ✅ RETURN APRÈS LES HOOKS
+  if (!data.length) {
+    return (
+      <div className="shadow-sm rounded-4 p-4 bg-white text-center text-muted">
+        Aucune donnée disponible
+      </div>
+    );
+  }
 
   const chartData = {
     labels: reducedLabels,
@@ -30,7 +54,7 @@ export default function Trends24h({ data }) {
         backgroundColor: "rgba(255,107,74,0.1)",
         tension: 0.4,
         borderWidth: 2.5,
-        pointRadius: 0,         // pas de points → plus propre
+        pointRadius: 0,
         pointHoverRadius: 5,
         fill: true,
         yAxisID: "y"
@@ -54,7 +78,7 @@ export default function Trends24h({ data }) {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false }, // on peut remettre si tu veux
+      legend: { display: false },
       tooltip: {
         backgroundColor: "#fff",
         titleColor: "#333",
@@ -62,14 +86,14 @@ export default function Trends24h({ data }) {
         borderColor: "#e7e7e7",
         borderWidth: 1,
         padding: 10,
-        displayColors: false,
-      },
+        displayColors: false
+      }
     },
     scales: {
       x: {
-        grid: { display: false }, // pas de grille verticale
+        grid: { display: false },
         ticks: {
-          maxRotation: 0, // ← labels horizontaux
+          maxRotation: 0,
           minRotation: 0,
           color: "#999",
           font: { size: 12 }
@@ -82,7 +106,7 @@ export default function Trends24h({ data }) {
           font: { size: 12 }
         },
         grid: {
-          color: "rgba(200,200,200,0.2)" // grille douce
+          color: "rgba(200,200,200,0.2)"
         }
       },
       y1: {
@@ -91,7 +115,7 @@ export default function Trends24h({ data }) {
           color: "#457bff",
           font: { size: 12 }
         },
-        grid: { drawOnChartArea: false } // pas de double grille 
+        grid: { drawOnChartArea: false }
       }
     }
   };
