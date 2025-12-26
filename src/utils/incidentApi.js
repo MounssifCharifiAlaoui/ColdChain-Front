@@ -13,10 +13,16 @@ export async function fetchArchivedIncidents() {
 }
 
 // ✅ Accuser réception
+// export async function ackIncident(id) {
+//   const res = await api.post(`/alertes/${id}/ack/`);
+//   return res.data;
+// }
 export async function ackIncident(id) {
   const res = await api.post(`/alertes/${id}/ack/`);
   return res.data;
 }
+
+
 
 // ✔️ Résoudre
 export async function resolveIncident(id) {

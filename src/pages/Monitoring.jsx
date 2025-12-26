@@ -36,13 +36,19 @@ export default function Monitoring() {
     }
   };
 
-  if (loading) {
-    return <div className="monitoring-loading">Chargement des données…</div>;
-  }
+if (loading) {
+  return <div className="monitoring-loading">Chargement des données…</div>;
+}
 
-  if (!data || data.length === 0) {
-    return <div className="monitoring-loading">Aucune donnée disponible.</div>;
-  }
+if (data === null) {
+  return <div className="monitoring-loading">Connexion au serveur…</div>;
+}
+
+if (data.length === 0) {
+  return <div className="monitoring-loading">
+    En attente des premières mesures…
+  </div>;
+}
 
   const last = data[data.length - 1];
 
@@ -84,65 +90,65 @@ export default function Monitoring() {
         </p>
       </div>
 
-<div style={{width : '90%', margin : 'auto' }}>
-      {/* ================= KPI ================= */}
-      <section className="monitoring-section">
-        <div className="monitoring-kpis">
-          <StatCard
-            icon={<i className="fa-solid fa-temperature-full"></i>}
-            title="Capteur de Température"
-            value={`${last.temp} °C`}
-            avg={`${avgTemp} °C`}
-            max={`${maxTemp} °C`}
-            min={`${minTemp} °C`}
-            diff={diffTemp}
-            color="danger"
-            lastUpdate={lastUpdateText}
-            lastTime={lastTime}
-            className = "w-100"
-          />
+      <div style={{ width: '90%', margin: 'auto' }}>
+        {/* ================= KPI ================= */}
+        <section className="monitoring-section">
+          <div className="monitoring-kpis">
+            <StatCard
+              icon={<i className="fa-solid fa-temperature-full"></i>}
+              title="Capteur de Température"
+              value={`${last.temp} °C`}
+              avg={`${avgTemp} °C`}
+              max={`${maxTemp} °C`}
+              min={`${minTemp} °C`}
+              diff={diffTemp}
+              color="danger"
+              lastUpdate={lastUpdateText}
+              lastTime={lastTime}
+              className="w-100"
+            />
 
-          <StatCard
-            icon={<i className="fa-solid fa-droplet"></i>}
-            title="Capteur d'Humidité"
-            value={`${last.hum} %`}
-            avg={`${avgHum} %`}
-            max={`${maxHum} %`}
-            min={`${minHum} %`}
-            diff={diffHum}
-            color="primary"
-            lastUpdate={lastUpdateText}
-            lastTime={lastTime}
-            className = "w-100"
-          />
-        </div>
-      </section>
-</div>
+            <StatCard
+              icon={<i className="fa-solid fa-droplet"></i>}
+              title="Capteur d'Humidité"
+              value={`${last.hum} %`}
+              avg={`${avgHum} %`}
+              max={`${maxHum} %`}
+              min={`${minHum} %`}
+              diff={diffHum}
+              color="primary"
+              lastUpdate={lastUpdateText}
+              lastTime={lastTime}
+              className="w-100"
+            />
+          </div>
+        </section>
+      </div>
 
-<div style={{width : '90%', margin : 'auto' }}>
-      {/* ================= FILTERS ================= */}
-      <section className="monitoring-section">
-        <MonitoringFilters onFilter={handleFilter} />
-      </section>
+      <div style={{ width: '90%', margin: 'auto' }}>
+        {/* ================= FILTERS ================= */}
+        <section className="monitoring-section">
+          <MonitoringFilters onFilter={handleFilter} />
+        </section>
 
-      {/* ================= CHARTS ================= */}
-      <section className="monitoring-section">
-        <div className="monitoring-charts">
-          <ChartTempHum
-            data={filteredData}
-            only="temp"
-            title="Graphique de Température"
-          />
+        {/* ================= CHARTS ================= */}
+        <section className="monitoring-section">
+          <div className="monitoring-charts">
+            <ChartTempHum
+              data={filteredData}
+              only="temp"
+              title="Graphique de Température"
+            />
 
-          <ChartTempHum
-            data={filteredData}
-            only="hum"
-            title="Graphique d'Humidité"
-          />
-        </div>
-      </section>
+            <ChartTempHum
+              data={filteredData}
+              only="hum"
+              title="Graphique d'Humidité"
+            />
+          </div>
+        </section>
 
-</div>
+      </div>
     </div>
   );
 }

@@ -5,10 +5,11 @@ export default function IncidentStatsCards({ stats }) {
       {/* ALERTES ACTIVES */}
       <div className="col-md-4">
         <div
-          className="card border-0 shadow-sm p-4"
+          className="card border-1 shadow-sm p-4"
           style={{
             borderRadius: "16px",
             background: "linear-gradient(135deg, #fff1f1, #ffe4e6)",
+            borderColor : "#ffdedf",
           }}
         >
           <div className="d-flex align-items-center gap-3">
@@ -35,10 +36,11 @@ export default function IncidentStatsCards({ stats }) {
       {/* ACQUITTÉES */}
       <div className="col-md-4">
         <div
-          className="card border-0 shadow-sm p-4"
+          className="card border-1 shadow-sm p-4"
           style={{
             borderRadius: "16px",
             background: "linear-gradient(135deg, #fff7ed, #ffedd5)",
+            borderColor : "#fdf3bd",
           }}
         >
           <div className="d-flex align-items-center gap-3">
@@ -69,6 +71,7 @@ export default function IncidentStatsCards({ stats }) {
           style={{
             borderRadius: "16px",
             background: "linear-gradient(135deg, #ecfdf5, #d1fae5)",
+            borderColor : "#d3fae2"
           }}
         >
           <div className="d-flex align-items-center gap-3">

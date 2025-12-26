@@ -4,6 +4,7 @@ import { getAccessToken, getRefreshToken, logout } from "./authService";
 /* 🔹 API PRINCIPALE */
 const api = axios.create({
   baseURL: "http://10.40.14.18:8000/api",
+    timeout: 5000,
 });
 
 /* 🔹 API REFRESH (sans interceptors) */
