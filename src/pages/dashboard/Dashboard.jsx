@@ -72,7 +72,7 @@ export default function Dashboard() {
       {/* ================= HEADER ================= */}
       <div className="d-flex flex-column mb-3">
         <h3 className="dashboard-title">
-          Dashboard – Temperature Monitoring
+          Dashboard -- Temperature Monitoring
         </h3>
         <p className="dashboard-subtitle">
           Real-time monitoring of your environment
