@@ -3,7 +3,7 @@ import LogoutButton from "../Auth/LogoutButton";
 import "./navbare.css"
 
 export default function NavBar() {
-  const username = localStorage.getItem("username");
+  const displayName = localStorage.getItem("display_name") || localStorage.getItem("username");
   const location = useLocation();
 
   const isActive = (path) =>
@@ -32,7 +32,7 @@ export default function NavBar() {
 
             <li className="nav-item">
               <Link className={isActive("/")} to="/">
-                <i className="bi bi-ui-radios me-2"></i> Dashboard
+                <i className="bi bi-grid me-2"></i> Dashboard
               </Link>
             </li>
 
@@ -67,12 +67,12 @@ export default function NavBar() {
               className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
               style={{ width: 38, height: 38, fontWeight: 600 }}
             >
-              {username ? username.charAt(0).toUpperCase() : "U"}
+              {displayName ? displayName.charAt(0).toUpperCase() : "U"}
             </div>
 
             <div className="text-start d-none d-md-block">
               <div className="fw-semibold text-dark">
-                {username || "Utilisateur"}
+                {displayName || "Utilisateur"}
               </div>
               <div className="text-muted small">Connecté</div>
             </div>

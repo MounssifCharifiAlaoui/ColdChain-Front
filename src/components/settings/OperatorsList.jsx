@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ AJOUT
+import { useNavigate } from "react-router-dom";
 import { fetchOperators, updateOperator } from "../../utils/operatorsApi";
 import { formatRole, roleColor } from "../../utils/roles";
 import NotificationChannels from "./NotificationChannels";
@@ -7,7 +7,7 @@ import NotificationChannels from "./NotificationChannels";
 export default function OperatorsList() {
   const [operators, setOperators] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // ✅ AJOUT
+  const navigate = useNavigate();
 
   const loadOperators = async () => {
     try {
@@ -40,96 +40,83 @@ export default function OperatorsList() {
   return (
     <div className="card shadow-sm p-4 mb-4">
       <h5 className="fw-bold mb-3">
-        <i className="bi bi-people me-2"></i>
-        Liste des opérateurs
+        <i className="bi bi-list me-2"></i>
+        Liste des opérateurs ({operators.length})
       </h5>
 
-      <div className="table-responsive">
-        <table className="table table-hover align-middle">
-          <thead className="table-light">
-            <tr>
-              <th>Nom</th>
-              <th>Rôle</th>
-              <th>Niveau</th>
-              <th>Canaux</th>
-              <th>Statut</th>
-              <th className="text-end">Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {operators.map((op) => (
-              <tr
-                key={op.id}
-                onDoubleClick={() =>
-                  navigate(`/settings/operators/${op.id}`)
-                } // ✅ DOUBLE-CLIC ICI
-                style={{ cursor: "pointer" }}
-                title="Double-cliquez pour voir le profil"
+      <div className="d-flex flex-column gap-3 bg-light">
+        {operators.map((op) => (
+          <div
+            key={op.id}
+            className="border rounded p-3 d-flex justify-content-between align-items-center"
+            onDoubleClick={() => navigate(`/settings/operators/${op.id}`)}
+            style={{ cursor: "pointer" }}
+          >
+            {/* LEFT */}
+            <div className="d-flex align-items-start gap-3">
+              {/* Avatar */}
+              <div
+                className="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                style={{ width: 40, height: 40 }}
               >
+                <i className="bi bi-person text-primary"></i>
+              </div>
 
-                {/* Nom */}
-                <td>
-                  <strong>
-                    {op.first_name} {op.last_name}
-                  </strong>
-                  <div className="text-muted small">
-                    {op.user?.username}
-                  </div>
-                </td>
-
-                {/* Rôle */}
-                <td>
-                  <span className={`badge bg-${roleColor(op.role)}`}>
+              {/* Infos */}
+              <div>
+                <div className="fw-semibold">
+                  {op.first_name} {op.last_name}
+                  <span
+                    className={`badge ms-2 bg-${roleColor(op.role)}`}
+                  >
                     {formatRole(op.role)}
                   </span>
-                </td>
-
-                {/* Niveau */}
-                <td>
-                  <span className="badge bg-secondary">
-                    Niveau {op.escalation_level}
+                  <span
+                    className={`badge ms-2 ${
+                      op.is_active ? "bg-success" : "bg-danger"
+                    }`}
+                  >
+                    {op.is_active ? "Actif" : "Inactif"}
                   </span>
-                </td>
+                </div>
+
+                {/* <div className="text-muted small">
+                  <i className="bi bi-envelope me-1"></i>
+                  {op.user?.email}
+                </div> */}
+
+                <div className="text-muted small">
+                  <i className="bi bi-telephone me-1"></i>
+                  {op.phone}
+                </div>
 
                 {/* Canaux */}
-                <td>
+                <div className="mt-2">
                   <NotificationChannels
                     operator={op}
                     onUpdated={loadOperators}
                   />
-                </td>
+                </div>
+              </div>
+            </div>
 
-                {/* Statut */}
-                <td>
-                  {op.is_active ? (
-                    <span className="badge bg-success">Actif</span>
-                  ) : (
-                    <span className="badge bg-danger">Inactif</span>
-                  )}
-                </td>
-
-                {/* Actions */}
-                <td className="text-end">
-                  <button
-                    className={`btn btn-sm ${
-                      op.is_active
-                        ? "btn-outline-danger"
-                        : "btn-outline-success"
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation(); // ✅ IMPORTANT (évite conflit avec double-clic)
-                      toggleActive(op);
-                    }}
-                  >
-                    {op.is_active ? "Désactiver" : "Activer"}
-                  </button>
-                </td>
-
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            {/* RIGHT */}
+            <button
+              className={`btn btn-sm ${
+                op.is_active
+                  ? "btn-outline-danger"
+                  : "btn-outline-success"
+              }`}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleActive(op);
+              }}
+            >
+              <i className="bi bi-trash me-1"></i>
+              {op.is_active ? "Désactiver" : "Activer"}
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

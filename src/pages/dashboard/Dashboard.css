@@ -1,64 +1,58 @@
 /* ================= CONTAINER ================= */
-.monitoring-container {
-  background: #f4f8fd;
-  min-height: 100vh;
+.dashboard-container {
+  /* background-color: #f4f8fd; */
   padding: 2rem 2.5rem;
+  min-height: 100vh;
 }
 
 /* ================= LOADING ================= */
-.monitoring-loading {
+.dashboard-loading {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #6c757d;
+  font-size: 1rem;
 }
 
 /* ================= HEADER ================= */
-.monitoring-header {
+.dashboard-header {
   margin-bottom: 2rem;
 }
 
-.monitoring-title {
-  font-size: 1.3rem;
+.dashboard-title {
+  font-size: 1.4rem;
   font-weight: 700;
   color: #212529;
-  margin: 0;
+  margin-bottom: 0.25rem;
 }
 
-.monitoring-subtitle {
+.dashboard-subtitle {
   font-size: 0.9rem;
   color: #6c757d;
-  margin-top: 0.25rem;
 }
 
 /* ================= SECTIONS ================= */
-.monitoring-section {
+.dashboard-section {
   margin-bottom: 2.5rem;
 }
 
-/* ================= KPI ================= */
-.monitoring-kpis {
+.section-header h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 1rem;
   display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-/* ================= CHARTS ================= */
-.monitoring-charts {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  align-items: center;
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .monitoring-container {
+  .dashboard-container {
     padding: 1.5rem 1.2rem;
   }
+}
 
-  .monitoring-kpis {
-    gap: 1.5rem;
-  }
+.dashboard-box {
+  height: 355px;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function MonitoringFilters({ onFilter }) {
-  const [selected, setSelected] = useState("24h");
+  const [selected, setSelected] = useState("all");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -24,33 +24,43 @@ export default function MonitoringFilters({ onFilter }) {
   const resetCustomFilter = () => {
     setStartDate("");
     setEndDate("");
-    setSelected("24h");
-    onFilter("24h");
+    setSelected("all");
+    onFilter("all");
+
+  };
+
+  const activeLabel = {
+    all: "Tous les données",
+    "7d": "7 derniers jours",
+    "30d": "30 derniers jours",
+    "custom": "Période personnalisée",
   };
 
   return (
     <div className="card p-3 shadow-sm rounded-4 mb-4">
 
-      {/* TITRE */}
-      <div className="mb-3">
+      {/* HEADER */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
         <h6 className="mb-0 fw-semibold text-secondary">
           Filtres de monitoring
         </h6>
+        <span className="badge bg-light text-secondary">
+          {activeLabel[selected]}
+        </span>
       </div>
 
-      {/* BOUTONS */}
+      {/* QUICK FILTERS */}
       <div className="d-flex gap-2 flex-wrap">
         {[
-          { key: "24h", label: "24 heures" },
-          { key: "7d", label: "7 jours" },
-          { key: "30d", label: "30 jours" },
+          { key: "all", label: "Tous" },
+          { key: "7d", label: "7j" },
+          { key: "30d", label: "30j" },
           { key: "custom", label: "Personnalisé" },
         ].map((f) => (
           <button
             key={f.key}
-            className={`btn btn-sm ${
-              selected === f.key ? "btn-primary" : "btn-outline-primary"
-            }`}
+            className={`btn btn-sm ${selected === f.key ? "btn-primary" : "btn-outline-primary"
+              }`}
             onClick={() => handleSelect(f.key)}
           >
             {f.label}
@@ -58,9 +68,9 @@ export default function MonitoringFilters({ onFilter }) {
         ))}
       </div>
 
-      {/* FILTRE PERSONNALISÉ */}
+      {/* CUSTOM FILTER */}
       {selected === "custom" && (
-        <div className="mt-4">
+        <div className="mt-4 border-top pt-3">
 
           <div className="row g-3 align-items-end">
             <div className="col-md-4">
@@ -97,10 +107,10 @@ export default function MonitoringFilters({ onFilter }) {
               </button>
 
               <button
-                className="btn btn-outline-secondary btn-sm flex-fill"
+                className="btn btn-outline-dark btn-sm flex-fill"
                 onClick={resetCustomFilter}
               >
-                Reset
+                Réinitialiser
               </button>
             </div>
           </div>

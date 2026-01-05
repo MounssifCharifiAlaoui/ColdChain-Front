@@ -41,7 +41,7 @@ export default function Login() {
   return (
     <div className="login-page d-flex justify-content-center align-items-center">
       <div className="login-card shadow-lg">
-        <h2 className="text-center mb-4">🔐 Connexion</h2>
+        <h2 className="text-center mb-4"><i className="bi bi-shield-lock"></i> Connexion</h2>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

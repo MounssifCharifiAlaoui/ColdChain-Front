@@ -9,7 +9,7 @@ export default function IncidentStatsCards({ stats }) {
           style={{
             borderRadius: "16px",
             background: "linear-gradient(135deg, #fff1f1, #ffe4e6)",
-            borderColor : "#ffdedf",
+            borderColor : "#f4acb7",
           }}
         >
           <div className="d-flex align-items-center gap-3">
@@ -40,7 +40,7 @@ export default function IncidentStatsCards({ stats }) {
           style={{
             borderRadius: "16px",
             background: "linear-gradient(135deg, #fff7ed, #ffedd5)",
-            borderColor : "#fdf3bd",
+            borderColor : "#fcbf49",
           }}
         >
           <div className="d-flex align-items-center gap-3">
@@ -67,11 +67,11 @@ export default function IncidentStatsCards({ stats }) {
       {/* RÉSOLUES */}
       <div className="col-md-4">
         <div
-          className="card border-0 shadow-sm p-4"
+          className="card border-1 shadow-sm p-4"
           style={{
             borderRadius: "16px",
             background: "linear-gradient(135deg, #ecfdf5, #d1fae5)",
-            borderColor : "#d3fae2"
+            borderColor : "#74c69d"
           }}
         >
           <div className="d-flex align-items-center gap-3">
@@ -81,7 +81,7 @@ export default function IncidentStatsCards({ stats }) {
                 width: "48px",
                 height: "48px",
                 borderRadius: "12px",
-                backgroundColor: "#22c55e",
+                backgroundColor: "#74c69d",
               }}
             >
               <i className="bi bi-check-circle-fill text-white fs-5"></i>

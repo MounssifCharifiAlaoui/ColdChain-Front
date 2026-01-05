@@ -1,0 +1,90 @@
+/* ================= CONTAINER ================= */
+.monitoring-container {
+  min-height: 100vh;
+  padding: 2.5rem 3rem;
+}
+
+.monitoring-wrapper {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ================= HEADER ================= */
+.monitoring-header {
+  margin-bottom: 2.2rem;
+}
+
+.monitoring-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.monitoring-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* ================= SECTIONS ================= */
+.monitoring-section {
+  margin-bottom: 2.8rem;
+}
+
+/* ================= KPI ================= */
+.monitoring-kpis {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+
+/* ================= FILTERS ================= */
+.monitoring-filters-inline {
+  padding: 1.2rem 1.4rem;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ================= CHARTS ================= */
+.monitoring-charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .monitoring-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ================= WARNING ================= */
+.monitoring-warning {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ================= LOADING ================= */
+.monitoring-loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .monitoring-container {
+    padding: 1.5rem 1.2rem;
+  }
+}

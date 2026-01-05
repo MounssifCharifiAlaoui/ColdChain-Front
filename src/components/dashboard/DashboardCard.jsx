@@ -19,7 +19,7 @@ export default function DashboardCard({
 
   return (
     <div
-      className="dashboard-card"
+      className="dashboard-card border-1"
       style={{
         background: `linear-gradient(135deg, ${gradientFrom}, ${gradiantMiddle}, ${gradientTo})`
       }}
@@ -36,7 +36,7 @@ export default function DashboardCard({
 
           <div>
             <div className="dashboard-title">{title}</div>
-            <div className="dashboard-subtitle">Valeur actuelle</div>
+            <div className="dashboard-subtitle ">Valeur actuelle</div>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export default function DashboardCard({
               textSize: "16px"
             })}
           />
-          <span className="progress-label">Actuelle</span>
+          <span className="progress-label text-white">Actuelle</span>
         </div>
 
         {/* Average */}
@@ -76,12 +76,12 @@ export default function DashboardCard({
             text={`${avgValue}${unit}`}
             styles={buildStyles({
               textColor: "#212529",
-              pathColor: "#adb5bd",
+              pathColor: color,
               trailColor: "rgba(0,0,0,0.08)",
               textSize: "16px"
             })}
           />
-          <span className="progress-label">Moyenne 24h</span>
+          <span className="progress-label text-white">Moyenne 24h</span>
         </div>
 
       </div>

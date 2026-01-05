@@ -2,38 +2,42 @@ import { BrowserRouter, Routes as RouterRoutes, Route, useLocation } from "react
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import NavBar from "./components/NavBar/NavBar";
 import Login from "./components/Auth/Login";
-import Dashboard from "./pages/Dashboard";
-import Monitoring from "./pages/Monitoring"
-import AlertsArchive from "./pages/AlertsArchive"
+import Dashboard from "./pages/dashboard/Dashboard";
+import Monitoring from "./pages/monitoring/Monitoring"
+import AlertsArchive from "./components/alertes/AlertsArchive"
+import AlertDetail from "./components/alertes/AlertDetail";
 import Alerts from "./pages/Alerts"
 import Settings from "./pages/Settings"
 import Profile from "./pages/Profile";
 import OperatorProfile from "./pages/OperatorProfile";
 import TestTemperatureForm from "./pages/TestTemperatureForm";
+import Footer from "./components/footer/Footer";
 
 
 function CustomRoutes() {
   const location = useLocation();
-  const hideNavbar = location.pathname === "/login";
+  const hide = location.pathname === "/login";
 
   return (
     <>
-      {!hideNavbar && <NavBar />}
+      {!hide && <NavBar />}
 
       <RouterRoutes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute> } />
-        <Route path="/monitoring" element={ <ProtectedRoute> <Monitoring /> </ProtectedRoute> } />
-        <Route path="/alerts" element={ <ProtectedRoute> <Alerts /> </ProtectedRoute> } />
-        <Route path="/settings" element={ <ProtectedRoute> <Settings /> </ProtectedRoute> } />
-        <Route path="/alerts" element={ <ProtectedRoute> <Alerts /> </ProtectedRoute> } />
-        <Route path="/alerts/archive" element={ <ProtectedRoute> <AlertsArchive  /> </ProtectedRoute> } />
-        <Route path="/profile" element={ <ProtectedRoute> <Profile /> </ProtectedRoute> } />
-        <Route path="/settings/operators/:id" element={ <ProtectedRoute> <OperatorProfile /> </ProtectedRoute> } />
-        <Route path="/test" element={ <ProtectedRoute> <TestTemperatureForm /> </ProtectedRoute> } />
-
-        
+        <Route path="/" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+        <Route path="/monitoring" element={<ProtectedRoute> <Monitoring /> </ProtectedRoute>} />
+        <Route path="/alerts" element={<ProtectedRoute> <Alerts /> </ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute> <Settings /> </ProtectedRoute>} />
+        <Route path="/alerts" element={<ProtectedRoute> <Alerts /> </ProtectedRoute>} />
+        <Route path="/alerts/archive" element={<ProtectedRoute> <AlertsArchive /> </ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>} />
+        <Route path="/settings/operators/:id" element={<ProtectedRoute> <OperatorProfile /> </ProtectedRoute>} />
+        <Route path="/test" element={<ProtectedRoute> <TestTemperatureForm /> </ProtectedRoute>} />
+        <Route path="/alerts/:id" element={<AlertDetail />} />
       </RouterRoutes>
+
+      {!hide && <Footer />}
+
     </>
   );
 }

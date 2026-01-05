@@ -23,8 +23,8 @@ export default function Settings() {
       <h3 className="fw-bold mb-4">Paramétrage du système</h3>
 
       <OperatorsList />
-      <EscalationRules />
       <OperatorForm />
+      <EscalationRules />
       <TemperatureRulesCard />
     </div>
   );

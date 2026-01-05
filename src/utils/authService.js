@@ -1,4 +1,5 @@
-import api from "./api"; // 🔥 IMPORT DE L'INSTANCE AXIOS CENTRALE
+import api from "./api"; 
+import { fetchMyProfile } from "./profileApi";
 
 export async function login(username, password) {
   try {
@@ -21,7 +22,22 @@ export async function login(username, password) {
 
     // 🔥 ADMIN FLAG
     localStorage.setItem("is_admin", payload.is_staff ? "true" : "false");
+ // 🧠 Récupération du profil
+    try {
+      const profile = await fetchMyProfile();
+      localStorage.setItem("profile", JSON.stringify(profile));
 
+      // ✅ Nom à afficher
+      const displayName = profile.operator
+        ? `${profile.operator.first_name} ${profile.operator.last_name}`
+        : payload.username;
+
+      localStorage.setItem("display_name", displayName);
+
+    } catch {
+      // fallback sécurité
+      localStorage.setItem("display_name", payload.username);
+    }
     return true;
   } catch (e) {
     console.error("Erreur Login:", e);
@@ -33,7 +49,12 @@ export function logout() {
   localStorage.removeItem("access");
   localStorage.removeItem("refresh");
   localStorage.removeItem("is_admin");
+  localStorage.removeItem("username");
+  localStorage.removeItem("email");
+  localStorage.removeItem("profile");
+  localStorage.removeItem("display_name");
 }
+
 
 export function getAccessToken() {
   return localStorage.getItem("access");

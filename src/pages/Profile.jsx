@@ -16,6 +16,7 @@ export default function Profile() {
   // 🔹 Changement mot de passe
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [message, setMessage] = useState("");
 
@@ -28,7 +29,6 @@ export default function Profile() {
       setEmail(data.email);
       setPhone(data.operator.phone);
     });
-    
   }, []);
 
   // =========================
@@ -40,7 +40,6 @@ export default function Profile() {
       setMessage("Informations personnelles mises à jour");
       setEditMode(false);
 
-      // 🔄 Rafraîchir le profil
       const refreshed = await fetchMyProfile();
       setProfile(refreshed);
     } catch {
@@ -52,16 +51,34 @@ export default function Profile() {
   // Changement mot de passe
   // =========================
   const handlePasswordChange = async () => {
+    setMessage("");
+
+    // 🔒 Validation front
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      setMessage("Veuillez remplir tous les champs");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setMessage("Le nouveau mot de passe et la confirmation ne correspondent pas");
+      return;
+    }
+
     try {
       await changePassword({
         old_password: oldPassword,
         new_password: newPassword,
       });
+
       setMessage("Mot de passe modifié avec succès");
       setOldPassword("");
       setNewPassword("");
-    } catch {
-      setMessage("Erreur lors du changement de mot de passe");
+      setConfirmPassword("");
+
+    } catch (err) {
+      const errorMsg =
+        err.response?.data?.error || "Erreur lors du changement de mot de passe";
+      setMessage(errorMsg);
     }
   };
 
@@ -88,13 +105,8 @@ export default function Profile() {
           </button>
         </div>
 
-        <p>
-          <strong>Nom :</strong> {operator.last_name}
-        </p>
-
-        <p>
-          <strong>Prénom :</strong> {operator.first_name}
-        </p>
+        <p><strong>Nom :</strong> {operator.last_name}</p>
+        <p><strong>Prénom :</strong> {operator.first_name}</p>
 
         {/* EMAIL */}
         <div className="mb-2">
@@ -126,13 +138,8 @@ export default function Profile() {
           )}
         </div>
 
-        <p>
-          <strong>Rôle :</strong> {operator.role}
-        </p>
-
-        <p>
-          <strong>Niveau d’escalade :</strong> {operator.escalation_level}
-        </p>
+        <p><strong>Rôle :</strong> {operator.role}</p>
+        <p><strong>Niveau d’escalade :</strong> {operator.escalation_level}</p>
 
         {editMode && (
           <button
@@ -160,10 +167,18 @@ export default function Profile() {
 
         <input
           type="password"
-          className="form-control mb-3"
+          className="form-control mb-2"
           placeholder="Nouveau mot de passe"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
+        />
+
+        <input
+          type="password"
+          className="form-control mb-3"
+          placeholder="Confirmer le nouveau mot de passe"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
         <button className="btn btn-primary" onClick={handlePasswordChange}>

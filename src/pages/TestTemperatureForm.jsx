@@ -14,7 +14,7 @@ export default function TestTemperatureForm() {
     setMessage(null);
 
     try {
-      await api.post("/post", {
+      await api.post("/post/", {
         temp: parseFloat(temperature),
         hum: parseFloat(humidity || 0),
       });
@@ -36,7 +36,7 @@ export default function TestTemperatureForm() {
       {/* Header */}
       <div className="test-form-header">
         <h3>Test Envoi Capteur</h3>
-        <p>Simulation manuelle des données de température et d’humidité</p>
+        <p>Simulation manuelle des données</p>
       </div>
 
       {/* Form */}

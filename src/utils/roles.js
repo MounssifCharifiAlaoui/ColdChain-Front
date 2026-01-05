@@ -7,11 +7,11 @@ export function roleColor(role) {
   switch (role) {
     case "admin":
       return "dark";
-    case "operator":
+    case "technical_fridge_manager":
       return "info";
-    case "supervisor":
+    case "site_pharma_manager":
       return "warning";
-    case "manager":
+    case "site_manager":
       return "primary";
     default:
       return "secondary";

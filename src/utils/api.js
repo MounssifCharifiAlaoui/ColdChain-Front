@@ -3,13 +3,13 @@ import { getAccessToken, getRefreshToken, logout } from "./authService";
 
 /* 🔹 API PRINCIPALE */
 const api = axios.create({
-  baseURL: "http://10.40.14.18:8000/api",
+  baseURL: "http://10.76.249.18:8000/api",
     timeout: 5000,
 });
 
 /* 🔹 API REFRESH (sans interceptors) */
 const refreshApi = axios.create({
-  baseURL: "http://10.40.14.18:8000/api",
+  baseURL: "http://10.76.249.18:8000/api",
 });
 
 /* ===== REQUEST INTERCEPTOR ===== */

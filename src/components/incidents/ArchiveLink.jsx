@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function ArchiveLink() {
   return (
-    <div className="d-flex justify-content-end mb-3">
+    <div className="d-flex justify-content-end">
       <Link
         to="/alerts/archive"
         className="btn btn-outline-secondary d-flex align-items-center gap-2"

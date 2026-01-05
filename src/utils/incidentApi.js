@@ -12,16 +12,25 @@ export async function fetchArchivedIncidents() {
   return res.data;
 }
 
-// ✅ Accuser réception
 // export async function ackIncident(id) {
 //   const res = await api.post(`/alertes/${id}/ack/`);
 //   return res.data;
 // }
-export async function ackIncident(id) {
-  const res = await api.post(`/alertes/${id}/ack/`);
+export async function ackIncident(id, payload) {
+  const res = await api.post(
+    `/alertes/${id}/ack/`,
+    {
+      comment: payload.comment,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
   return res.data;
 }
-
 
 
 // ✔️ Résoudre

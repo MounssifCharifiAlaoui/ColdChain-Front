@@ -1,22 +1,11 @@
 import "./StatCard.css";
 
-export default function StatCard({
-  icon,
-  title,
-  value,
-  avg,
-  max,
-  min,
-  diff,
-  color,
-  lastUpdate,
-  lastTime
-}) {
+export default function StatCard({ icon, title, value, avg, max, min, diff, color, lastUpdate, lastTime }) {
   return (
-    <div className="stat-card card border-0 p-4 rounded-4">
+    <div className="stat-card card rounded-4" style={{ border: "solid 1px #e8e8e4" }}>
 
       {/* HEADER */}
-      <div className="d-flex align-items-center gap-3 mb-3">
+      <div className="d-flex align-items-center gap-2 mb-2">
         <div className={`icon-box icon-box-${color}`}>
           <span className={`icon-inside icon-inside-${color}`}>{icon}</span>
         </div>
@@ -32,7 +21,7 @@ export default function StatCard({
       <div className="stat-diff">{diff}</div>
 
       {/* STATS */}
-      <div className="row g-2 mt-3 text-center">
+      <div className="row g-2 mt-2 text-center">
         <div className="col">
           <div className="stat-box">
             <div className="stat-label">Moyenne</div>

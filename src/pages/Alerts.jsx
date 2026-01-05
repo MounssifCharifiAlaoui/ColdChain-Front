@@ -50,10 +50,15 @@ export default function Alerts() {
     resolved: incidents.filter((i) => i.status === "resolved").length,
   };
 
-  const handleAck = async (id) => {
-    await ackIncident(id);
-    loadIncidents();
-  };
+  // const handleAck = async (id) => {
+  //   await ackIncident(id);
+  //   loadIncidents();
+  // };
+  const handleAck = async (id, data) => {
+  await ackIncident(id, data);
+  loadIncidents();
+};
+
 
 
   if (loading) {
@@ -63,6 +68,7 @@ export default function Alerts() {
   return (
     <div className="container py-4">
 
+
       <div className="mb-4">
         <h3 className="fw-bold mb-1">Alertes</h3>
         <p className="text-muted">
@@ -70,25 +76,29 @@ export default function Alerts() {
         </p>
       </div>
 
-      <ArchiveLink />
 
-      <div className="d-flex flex-wrap gap-2 mb-4">
-        {[
-          ["all", "Toutes"],
-          ["active", "Actives"],
-          ["ack", "Acquittées"],
-          ["resolved", "Résolues"],
-        ].map(([key, label]) => (
-          <button
-            key={key}
-            className={`btn btn-sm ${
-              filter === key ? "btn-primary" : "btn-outline-secondary"
-            }`}
-            onClick={() => setFilter(key)}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="d-flex justify-content-between align-items-center mb-2">
+
+        <div className="d-flex flex-wrap gap-2 mb-2">
+          {[
+            ["all", "Toutes"],
+            ["active", "Actives"],
+            ["ack", "Acquittées"],
+            ["resolved", "Résolues"],
+          ].map(([key, label]) => (
+            <button
+              key={key}
+              className={`px-3 py-2 btn btn-sm ${filter === key ? "btn-primary" : "btn-outline-secondary"
+                }`}
+              onClick={() => setFilter(key)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        <ArchiveLink />
+
       </div>
 
       <IncidentStatsCards stats={stats} />
@@ -96,7 +106,7 @@ export default function Alerts() {
       <IncidentList
         incidents={paginatedIncidents}
         onAck={handleAck}
-        // onResolve={handleResolve}
+      // onResolve={handleResolve}
       />
 
       {totalPages > 1 && (
@@ -114,9 +124,8 @@ export default function Alerts() {
             {Array.from({ length: totalPages }).map((_, index) => (
               <li
                 key={index}
-                className={`page-item ${
-                  currentPage === index + 1 ? "active" : ""
-                }`}
+                className={`page-item ${currentPage === index + 1 ? "active" : ""
+                  }`}
               >
                 <button
                   className="page-link"
@@ -128,9 +137,8 @@ export default function Alerts() {
             ))}
 
             <li
-              className={`page-item ${
-                currentPage === totalPages && "disabled"
-              }`}
+              className={`page-item ${currentPage === totalPages && "disabled"
+                }`}
             >
               <button
                 className="page-link"

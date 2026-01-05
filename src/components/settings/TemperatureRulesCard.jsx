@@ -29,17 +29,41 @@ export default function TemperatureRulesCard() {
 
   return (
     <div className="card shadow-sm p-4 mb-4">
-      <h5 className="fw-bold mb-3">
-        <i className="bi bi-thermometer-half me-2"></i>
-        Seuils de température
-      </h5>
 
-      {success && <div className="alert alert-success py-2">{success}</div>}
+      {/* Titre */}
+      <div className="d-flex align-items-center gap-3 mb-3">
+        <div
+          className="rounded-circle text-white d-flex align-items-center justify-content-center"
+          style={{
+            width: 42,
+            height: 42,
+            background: "linear-gradient(135deg, #5b8cff, #7aa2ff)",
+          }}
+        >
+          <i className="bi bi-thermometer-half"></i>
+        </div>
+        <div>
+          <h5 className="fw-bold mb-0 text-primary">
+            Seuils de température
+          </h5>
+          <small className="text-muted">
+            Paramétrez les seuils normaux et critiques
+          </small>
+        </div>
+      </div>
 
-      <div className="row g-3">
+      {success && (
+        <div className="alert alert-success py-2">{success}</div>
+      )}
 
-        <div className="col-md-6">
-          <label>Température MIN normale (°C)</label>
+      {/* Inputs */}
+      <div className="row g-3 mb-4">
+
+        {/* Min normal */}
+        <div className="col-md-6 col-lg-3">
+          <label className="form-label fw-semibold">
+            Température minimale (°C)
+          </label>
           <input
             type="number"
             className="form-control"
@@ -47,10 +71,16 @@ export default function TemperatureRulesCard() {
             value={rules.min_normal}
             onChange={handleChange}
           />
+          <small className="text-muted">
+            Alerte si la température descend en dessous
+          </small>
         </div>
 
-        <div className="col-md-6">
-          <label>Température MAX normale (°C)</label>
+        {/* Max normal */}
+        <div className="col-md-6 col-lg-3">
+          <label className="form-label fw-semibold">
+            Température maximale (°C)
+          </label>
           <input
             type="number"
             className="form-control"
@@ -58,41 +88,59 @@ export default function TemperatureRulesCard() {
             value={rules.max_normal}
             onChange={handleChange}
           />
+          <small className="text-muted">
+            Alerte si la température dépasse
+          </small>
         </div>
 
-        <div className="col-md-6">
-          <label>Seuil critique bas (°C)</label>
+        {/* Critique bas */}
+        <div className="col-md-6 col-lg-3">
+          <label className="form-label fw-semibold text-danger">
+            Seuil critique bas (°C)
+          </label>
           <input
             type="number"
-            className="form-control"
+            className="form-control border-danger"
             name="critical_min"
             value={rules.critical_min}
             onChange={handleChange}
           />
+          <small className="text-muted">
+            Alerte critique immédiate
+          </small>
         </div>
 
-        <div className="col-md-6">
-          <label>Seuil critique haut (°C)</label>
+        {/* Critique haut */}
+        <div className="col-md-6 col-lg-3">
+          <label className="form-label fw-semibold text-danger">
+            Seuil critique haut (°C)
+          </label>
           <input
             type="number"
-            className="form-control"
+            className="form-control border-danger"
             name="critical_max"
             value={rules.critical_max}
             onChange={handleChange}
           />
+          <small className="text-muted">
+            Alerte critique immédiate
+          </small>
         </div>
 
       </div>
 
-      <div className="text-end mt-4">
+      {/* Bouton */}
+      <div className="text-end">
         <button
           className="btn btn-primary"
           onClick={saveRules}
           disabled={saving}
         >
+          <i className="bi bi-save me-1"></i>
           {saving ? "Enregistrement…" : "Enregistrer"}
         </button>
       </div>
+
     </div>
   );
 }
