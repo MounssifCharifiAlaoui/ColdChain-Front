@@ -11,7 +11,7 @@ import Settings from "./pages/Settings"
 import Profile from "./pages/Profile";
 import OperatorProfile from "./pages/OperatorProfile";
 import TestTemperatureForm from "./pages/TestTemperatureForm";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/Footer/Footer";
 
 
 function CustomRoutes() {
