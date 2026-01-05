@@ -4,10 +4,10 @@ import Trends24h from "../../components/dashboard/Trends24h";
 import { fetchActiveIncidents } from "../../utils/incidentApi"
 import ZoneCard from "../../components/dashboard/ZoneCard";
 import { useData } from "../../context/useData";
-import Card from "../../components/cards/card";
+import Card from "../../components/cards/Card";
 import { useState, useEffect } from "react";
 import "./Dashboard.css";
-import Monitoring from "../monitoring/Monitoring";
+// import Monitoring from "../monitoring/Monitoring";
 
 export default function Dashboard() {
   const { data, loading } = useData();
